@@ -1,0 +1,116 @@
+Feature: User Login on Magento # features/login.feature:1
+
+  Scenario: Successful login                # features/login.feature:3
+    Given I am on the Magento login page    # steps/login_steps.py:23
+    When I enter valid login credentials    # steps/login_steps.py:30
+    And I submit the login form             # steps/login_steps.py:42
+    Then I should be logged in successfully # steps/login_steps.py:46
+      Traceback (most recent call last):
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\behave\model.py", line 1329, in run
+          match.run(runner.context)
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\behave\matchers.py", line 98, in run
+          self.func(context, *args, **kwargs)
+        File "steps\login_steps.py", line 49, in step_verify_successful_login
+          assert "Welcome" in context.page.get_welcome_message()
+        File "C:\Users\Gagan S\PycharmProjects\qa_automation\bdd_automation\pages\login_page.py", line 26, in get_welcome_message
+          return self.wait_for_element(self.WELCOME_MESSAGE).text
+        File "C:\Users\Gagan S\PycharmProjects\qa_automation\bdd_automation\pages\base_page.py", line 9, in wait_for_element
+          return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\selenium\webdriver\support\wait.py", line 146, in until
+          raise TimeoutException(message, screen, stacktrace)
+      selenium.common.exceptions.TimeoutException: Message: 
+      Stacktrace:
+      	GetHandleVerifier [0x00007FF7547BFE45+26629]
+      	(No symbol) [0x00007FF754726010]
+      	(No symbol) [0x00007FF7545B931A]
+      	(No symbol) [0x00007FF75460F8E7]
+      	(No symbol) [0x00007FF75460FB1C]
+      	(No symbol) [0x00007FF7546634A7]
+      	(No symbol) [0x00007FF754637AEF]
+      	(No symbol) [0x00007FF754660169]
+      	(No symbol) [0x00007FF754637883]
+      	(No symbol) [0x00007FF754600550]
+      	(No symbol) [0x00007FF754601803]
+      	GetHandleVerifier [0x00007FF754B172BD+3529853]
+      	GetHandleVerifier [0x00007FF754B2DA22+3621858]
+      	GetHandleVerifier [0x00007FF754B224D3+3575443]
+      	GetHandleVerifier [0x00007FF75488B77A+860474]
+      	(No symbol) [0x00007FF75473088F]
+      	(No symbol) [0x00007FF75472CBC4]
+      	(No symbol) [0x00007FF75472CD66]
+      	(No symbol) [0x00007FF75471C2C9]
+      	BaseThreadInitThunk [0x00007FFBA8D8E8D7+23]
+      	RtlUserThreadStart [0x00007FFBA9C5BF6C+44]
+      
+      
+      Captured stdout:
+      Screenshot saved: screenshots\login_success.png
+
+
+  Scenario: Login with incorrect credentials  # features/login.feature:9
+    Given I am on the Magento login page      # steps/login_steps.py:23
+    When I enter invalid login credentials    # steps/login_steps.py:34
+    And I submit the login form               # steps/login_steps.py:42
+    Then I should see an error message        # None
+
+  Scenario: Login with blank credentials   # features/login.feature:15
+    Given I am on the Magento login page   # steps/login_steps.py:23
+    When I leave the login fields empty    # steps/login_steps.py:38
+    And I submit the login form            # steps/login_steps.py:42
+    Then I should see a validation message # steps/login_steps.py:58
+      Traceback (most recent call last):
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\behave\model.py", line 1329, in run
+          match.run(runner.context)
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\behave\matchers.py", line 98, in run
+          self.func(context, *args, **kwargs)
+        File "steps\login_steps.py", line 61, in step_verify_validation_message
+          assert "This is a required field" in context.page.get_error_message()
+        File "C:\Users\Gagan S\PycharmProjects\qa_automation\bdd_automation\pages\login_page.py", line 23, in get_error_message
+          return self.wait_for_element(self.ERROR_MESSAGE).text
+        File "C:\Users\Gagan S\PycharmProjects\qa_automation\bdd_automation\pages\base_page.py", line 9, in wait_for_element
+          return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
+        File "C:\Users\Gagan S\PycharmProjects\.venv\lib\site-packages\selenium\webdriver\support\wait.py", line 146, in until
+          raise TimeoutException(message, screen, stacktrace)
+      selenium.common.exceptions.TimeoutException: Message: 
+      Stacktrace:
+      	GetHandleVerifier [0x00007FF7547BFE45+26629]
+      	(No symbol) [0x00007FF754726010]
+      	(No symbol) [0x00007FF7545B931A]
+      	(No symbol) [0x00007FF75460F8E7]
+      	(No symbol) [0x00007FF75460FB1C]
+      	(No symbol) [0x00007FF7546634A7]
+      	(No symbol) [0x00007FF754637AEF]
+      	(No symbol) [0x00007FF754660169]
+      	(No symbol) [0x00007FF754637883]
+      	(No symbol) [0x00007FF754600550]
+      	(No symbol) [0x00007FF754601803]
+      	GetHandleVerifier [0x00007FF754B172BD+3529853]
+      	GetHandleVerifier [0x00007FF754B2DA22+3621858]
+      	GetHandleVerifier [0x00007FF754B224D3+3575443]
+      	GetHandleVerifier [0x00007FF75488B77A+860474]
+      	(No symbol) [0x00007FF75473088F]
+      	(No symbol) [0x00007FF75472CBC4]
+      	(No symbol) [0x00007FF75472CD66]
+      	(No symbol) [0x00007FF75471C2C9]
+      	BaseThreadInitThunk [0x00007FFBA8D8E8D7+23]
+      	RtlUserThreadStart [0x00007FFBA9C5BF6C+44]
+      
+      
+      Captured stdout:
+      Screenshot saved: screenshots\login_validation_error.png
+
+
+Feature: User Registration on Magento # features/signup.feature:1
+
+  Scenario: Successful account creation         # features/signup.feature:3
+    Given I am on the Magento registration page # steps/signup_steps.py:23
+    When I enter valid registration details     # steps/signup_steps.py:30
+    And I submit the registration form          # steps/signup_steps.py:40
+    Then I should see a success message         # steps/signup_steps.py:44
+
+  Scenario: Sign-up with an existing email      # features/signup.feature:9
+    Given I am on the Magento registration page # steps/signup_steps.py:23
+    When I enter an already registered email    # steps/signup_steps.py:36
+    And I submit the registration form          # steps/signup_steps.py:40
+    Then I should see an error message          # None
+
